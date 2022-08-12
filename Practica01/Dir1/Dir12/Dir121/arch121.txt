@@ -1,0 +1,91 @@
+2001  git clone https://github.com/Jony198207/P_Mecatronica.git
+ 2002  ls
+ 2003  cd P_Mecatronica/
+ 2004  ls -la
+ 2005  ls
+ 2006  ls --help
+ 2007  ls -l
+ 2008  ls -a
+ 2009  ls -al
+ 2010  ls -la
+ 2011  mkdir Practica01
+ 2012  ls
+ 2013  mkdir Dir1
+ 2014  ls
+ 2015  cd Dir1/
+ 2016  ls
+ 2017  mkdir Dir11
+ 2018  ls
+ 2019  mkdir Dir12
+ 2020  ls
+ 2021  cd Dir11
+ 2022  mkdir Dir111 Dir112 Dir113
+ 2023  ls
+ 2024  cd Dir111
+ 2025  touch arch111.txt
+ 2026  ls
+ 2027  cd ..
+ 2028  cd Dir112
+ 2029  touch arch112.py
+ 2030  ls
+ 2031  cd ~/P_Mecatronica/Dir1/
+ 2032  cd Dir12
+ 2033  mkdir Dir121
+ 2034  touch arch121.txt
+ 2035  ls
+ 2036  rm arch121.txt 
+ 2037  ls
+ 2038  cd Dir121/
+ 2039  touch arch121.txt
+ 2040  ls
+ 2041  mkdir Dir1212
+ 2042  cd Dir1212/
+ 2043  touch arch1212.txt
+ 2044  ls
+ 2045  cd ~/P_Mecatronica/
+ 2046  tree
+ 2047  snap install tree
+ 2048  tree
+ 2049  mv Dir1 Practica01/
+ 2050  ls
+ 2051  tree
+ 2052  cp --help
+ 2053  cd Practica01/
+ 2054  ls
+ 2055  cp Dir1/ Dir1_cp
+ 2056  cp -r Dir1/ Dir1_cp
+ 2057  ls
+ 2058  tree
+ 2059  mv Dir1_cp/ Copia_Dir
+ 2060  ls
+ 2061  cd Dir1/Dir11/Dir/111
+ 2062  cd Dir1/Dir11/Dir111/
+ 2063  nano arch111.txt
+ 2064  cd ~/P_Mecatronica/
+ 2065  ls
+ 2066  ls -la
+ 2067  git status 
+ 2068  git add Practica01/
+ 2069  git status 
+ 2070  git commit -m 'Se crearon directorios de prueba desde la terminal'
+ 2071  git status 
+ 2072  git push origin main
+ 2073  git config --global user.email "joni01chuy@gmail.com"
+ 2074  git config --global user.name "Jony198207"
+ 2075  git push origin main
+ 2076  git status
+ 2077  cd Practica01/
+ 2078  ls
+ 2079  rm Copia_Dir
+ 2080  rm -r Copia_Dir/
+ 2081  ls
+ 2082  git status
+ 2083  git add Copia_Dir 
+ 2084  git status
+ 2085  git commit -m 'Borrando directorio'
+ 2086  git status
+ 2087  git push origin main
+ 2088  git status
+ 2089  top
+ 2090  history
+
