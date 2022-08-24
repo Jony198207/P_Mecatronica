@@ -3,7 +3,7 @@
 
 void setup() {
   // se ejecuta solo una vez. Con pines digitales I/O.
-  pinMode (LED, OUTPUT); // Define que será un puerto de salida.
+  pinMode (LED, OUTPUT); // Define que LED, es decir el puerto 13, será un puerto de salida.
 }
 
 void loop() {
