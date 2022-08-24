@@ -10,12 +10,12 @@
 void setup() {
   // put your setup code here, to run once:
   // Espacio en el que se definen entradas y salidas. 
-  pinMode(LED1,OUTPUT); // Define LED1 como salida 
-  pinMode(LED2,OUTPUT); // Define LED2 como salida 
-  pinMode(LED3,OUTPUT); // Define LED3 como salida 
-  pinMode(LED4,OUTPUT); // Define LED4 como salida 
-  pinMode(LED5,OUTPUT); // Define LED5 como salida 
-  pinMode(LED6,OUTPUT); // Define LED6 como salida 
+  pinMode(LED1,OUTPUT); // Define LED1, es decir el puerto 13, como salida 
+  pinMode(LED2,OUTPUT); // Define LED2, es decir el puerto 12, como salida 
+  pinMode(LED3,OUTPUT); // Define LED3, es decir el puerto 11, como salida 
+  pinMode(LED4,OUTPUT); // Define LED4, es decir el puerto 10, como salida 
+  pinMode(LED5,OUTPUT); // Define LED5, es decir el puerto 9, como salida 
+  pinMode(LED6,OUTPUT); // Define LED6, es decir el puerto 8, como salida 
 }
 
 void loop() {
