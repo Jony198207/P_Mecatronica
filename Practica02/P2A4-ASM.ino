@@ -9,9 +9,9 @@ void loop()
     asm (
       // En todas las lineas se emplean al final \n\t, lo que significa salto de linea
             "inicio: \n\t" // Etiqueta que indica el inicio del programa 
-            "sbi 0x05,0x07 \n\t" // 
+            "sbi 0x05,0x07 \n\t" // Coloca en nivel alto a estos bits, es decir setea a una entrada o salida. 
             "call tiempo \n\t" // Llama directamente a una subrutina (por su etiqueta y la ejecuta), en este caso a la de "tiempo" 
-            "cbi 0x05,0x07 \n\t"
+            "cbi 0x05,0x07 \n\t" // Al terminar el anterior ciclo ocurrido por la llamada del Call y retomado a este punto por la instruccion ret de abajo, borra estos bits en el registro de entrada/salida. 
             "call tiempo \n\t" // Llama directamente a una subrutina (por su etiqueta y la ejecuta), en este caso a la de "tiempo" por SEGUNDA OCASION. 
             "jmp main \n\t" //  Desvia el flujo del programa sin tomar en cuenta las condiciones actuales de las banderas ni de los datos. Esto permite saltar al siguiente codigo.
       
@@ -32,4 +32,6 @@ void loop()
             // Lo anterior involucra a su vez que se repita el cargo de valor al registro r20 y r21, así com sus respectivos bucles. 
             "ret \n\t" // Realiza un retorno de la subrutina, es decir, indica que se vuelve a comenzar hacia la siguiente llamada call de arriba. De manera que este bloque de codigo se ejecuta dos veces 
       );
+  
+  // A este tipo de programas se les conoce como DESTELLOS, por los viajes entre llamadas y subrutinas que se hacen. 
 } 
