@@ -10,10 +10,11 @@ void loop()
       // En todas las lineas se emplean al final \n\t, lo que significa salto de linea
             "inicio: \n\t" // Etiqueta que indica el inicio del programa 
             "sbi 0x05,0x07 \n\t" // 
-            "call tiempo \n\t"
+            "call tiempo \n\t" // Llama directamente a una subrutina (por su etiqueta y la ejecuta), en este caso a la de "tiempo" 
             "cbi 0x05,0x07 \n\t"
-            "call tiempo \n\t"
-            "jmp main \n\t"
+            "call tiempo \n\t" // Llama directamente a una subrutina (por su etiqueta y la ejecuta), en este caso a la de "tiempo" por SEGUNDA OCASION. 
+            "jmp main \n\t" //  Desvia el flujo del programa sin tomar en cuenta las condiciones actuales de las banderas ni de los datos. Esto permite saltar al siguiente codigo.
+      
             "tiempo: \n\t" // Etiqueta nombrada tiempo
             "LDI r22, 45 \n\t" // Carga instantanea del valor 45 en decimal al registro 22
             "LOOP_3: \n\t" // Etiqueta nombrada LOOP_3
@@ -29,6 +30,6 @@ void loop()
             "DEC r22 \n\t" // Decrementa en 1 unidad el contenido del registro r22
             "BRNE LOOP_3 \n\t" // Hace un test de la FLAG Z, si el contenido de r22 ya es 0, pasa a la instruccion de abajo, caso contrario vuelve a la etiqueta LOOP-3 de arriba.
             // Lo anterior involucra a su vez que se repita el cargo de valor al registro r20 y r21, así com sus respectivos bucles. 
-            "ret \n\t" // Realiza un retorno de la subrutina, es decir, indica que se vuelve a comenzar 
+            "ret \n\t" // Realiza un retorno de la subrutina, es decir, indica que se vuelve a comenzar hacia la siguiente llamada call de arriba. De manera que este bloque de codigo se ejecuta dos veces 
       );
 } 
