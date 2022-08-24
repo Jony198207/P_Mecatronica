@@ -6,7 +6,8 @@ void setup()
 void loop()
 {
   // Loop, proceso mismo de lo que se hace 
-    asm (
+    asm ( // siglas de ENSAMBLADOR, lo que indica que el siguiente codigo esta escrito en este lenguaje y que por tanto arduino necesita interpretarlo
+      
       // En todas las lineas se emplean al final \n\t, lo que significa salto de linea
             "inicio: \n\t" // Etiqueta que indica el inicio del programa 
             "sbi 0x05,0x07 \n\t" // Coloca en nivel alto a estos bits, es decir setea a una entrada o salida. 
