@@ -8,9 +8,9 @@ void setup() {
 
 void loop() {
   // loop en el arduino mientras que este conectado.
-  digitalWrite(LED, HIGH); // Si fuera bajo seria LOW= 0V, HIGH=5V.
-  delay(200); //Da un retardo de .002
+  digitalWrite(LED, HIGH); // Si fuera bajo seria LOW= 0V, HIGH=5V. Por tanto, prende led
+  delay(200); //Da un retardo de 1/5 de segundo
   digitalWrite(LED, LOW); //Apaga el LED
-  delay(200); //Da un retardo de .002
+  delay(200); //Da un retardo de 1/5 de segundo
   
 }
