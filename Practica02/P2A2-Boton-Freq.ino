@@ -6,8 +6,8 @@ int button_state;
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(LED,OUTPUT);
-  pinMode(BTN,INPUT);
+  pinMode(LED,OUTPUT); // Indica que LED, es decir el puerto 13 será una salida
+  pinMode(BTN,INPUT); // Indica que BTN será una entrada de datos, es decir, el puerto 12 será una entrada. 
 }
 
 void loop() {
