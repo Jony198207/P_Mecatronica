@@ -7,9 +7,9 @@ void setup() {
 }
 
 void loop() {
-  lcd.setCursor(indice,0); // Definimos que el cursor en la pantalla empezará en la fila y columna 0.
+  lcd.setCursor(indice,0); // Definimos que el cursor en la pantalla empezará en la fila y columna indice.
   lcd.print("Jonathan_G      "); // imprime en pantalla el nombre de un integrante del equipo. Se dejan 6 espacios en blanco para completar los 16.
-  lcd.setCursor(indice,1); // Definimos que el cursor en la pantalla empezará en la fila 1 y columna 4.
+  lcd.setCursor(indice,1); // Definimos que el cursor en la pantalla empezará en la fila 1 y columna indice.
   lcd.print("Dante_F         "); // imprime en pantalla el nombre de un integrante del equipo.Se dejan 6 espacios en blanco para completar los 19.
 
   // En este if se va reduciendo, para recorrer los nombres de derecha a izquierda
