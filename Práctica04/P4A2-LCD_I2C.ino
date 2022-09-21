@@ -5,10 +5,10 @@ LiquidCrystal_I2C lcd(0x27,16,2);  // set the LCD address to 0x27 for a 16 chars
 int indice = 15;
 void setup()
 {
-  lcd.init();                      // initialize the lcd 
+  lcd.init();       // initialize the lcd 
   // Print a message to the LCD.
-  lcd.backlight();
-  lcd.clear();
+  lcd.backlight(); // Hace un "pulso de luz" en la pantalla para iluminarla e inicializar la proyección de información.
+  lcd.clear(); // Limpia el contenido actual del LCD
 }
 
 
