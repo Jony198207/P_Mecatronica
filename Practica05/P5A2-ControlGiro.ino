@@ -14,32 +14,32 @@ void setup() {
 void loop() {
   value = analogRead(pot);
   voltaje = map(value,0,1023,0,5);
-  if (voltaje < 2) {
+  if (voltaje > 0 && voltaje < 2) {
     levogirico();
-  }
-  if (voltaje > 2 and voltaje < 3) {
-    dextrogiro();
-  }
-  if (voltaje > 3 and voltaje < 5) {
+  } 
+  else if (voltaje >= 2 && voltaje < 3) {
     detener();
   }
-  delay(1000);
+  if (voltaje >= 3 && voltaje < 5) {
+    dextrogiro();
+  } 
+  delay(10);
 }
 
 void levogirico() {
-  Serial.print("Levogiro");
+  Serial.println("Levogiro");
   digitalWrite(MotA,HIGH);
   digitalWrite(MotB,LOW);
 }
 
 void dextrogiro() {
-  Serial.print("Dextrogiro");
+  Serial.println("Dextrogiro");
   digitalWrite(MotA,LOW);
   digitalWrite(MotB,HIGH);
 }
 
 void detener() {
-  Serial.print("Detenido");
+  Serial.println("Detenido");
   digitalWrite(MotA,LOW);
   digitalWrite(MotB,LOW);
 }
