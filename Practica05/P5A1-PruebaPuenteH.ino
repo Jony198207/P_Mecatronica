@@ -1,27 +1,30 @@
+// Declaramos los pines 10 y 11
+
 #define MotA 10
 #define MotB 11
 
 void setup() {
-  pinMode(MotA, OUTPUT);
-  pinMode(MotB, OUTPUT);
+  //Iniciamos la comunicacion serial a 9600 baudios. 
+  pinMode(MotA, OUTPUT); // Declaramos como salida el pin 10
+  pinMode(MotB, OUTPUT); // Declaramos como salida el pin 11
   Serial.begin(9600);
 }
 
 void loop() {
-  digitalWrite(MotA,HIGH);
-  digitalWrite(MotB,LOW);
-  delay(1000);
-  Serial.print("Levogiro");
-  digitalWrite(MotA,LOW);
-  digitalWrite(MotB,LOW);
-  delay(1000);
-  Serial.print("Freno pasivo");
-  digitalWrite(MotA,LOW);
-  digitalWrite(MotB,HIGH);
-  delay(1000);
-  Serial.print("Dextrogiro");
-  digitalWrite(MotA,HIGH);
-  digitalWrite(MotB,HIGH);
-  delay(1000);
-  Serial.print("Freno activo");
+  digitalWrite(MotA,HIGH); // Damos estado alto al pin 10
+  digitalWrite(MotB,LOW); // Estado bajo del pin 11
+  delay(1000); // Retardo de 1 segundo mientras se realiza un levogiro
+  Serial.print("Levogiro"); // Impresion textual
+  digitalWrite(MotA,LOW); // Estado bajo "0" del pin 10
+  digitalWrite(MotB,LOW); // Estado bajo del pin 11
+  delay(1000); // Retardo de 1 segundo
+  Serial.print("Freno pasivo"); // Imprime Freno pasivo, pues no hay movimiento en este punto
+  digitalWrite(MotA,LOW); // Estado bajo del pin 10
+  digitalWrite(MotB,HIGH); // Estado alto del pin 11
+  delay(1000); // Retardo de 1 segundo
+  Serial.print("Dextrogiro"); // Se hace dextrogiro y lo imprime en la comunicación serial
+  digitalWrite(MotA,HIGH); // Estado alto del pin 10
+  digitalWrite(MotB,HIGH); // Estado bajo del pin 11 
+  delay(1000); // Retardo de 1 segundo
+  Serial.print("Freno activo"); // Frena la accion de manera def.
 }
