@@ -1,3 +1,6 @@
+#include <LiquidCrystal_I2C.h> //Incluimos la libreria para comunicarnos por I2C con el LCD
+LiquidCrystal_I2C lcd(0x27,16,2);
+
 #define motA1 4 // Pin de control del motor A
 #define motA2 3 // Pin de control del motor A
 #define motB1 6 // Pin de control del motor b
@@ -23,7 +26,9 @@ float UMBRAL_INFERIOR= -500;
 void setup() {
 // put your setup code here, to run once:
 // Definimos la comunicaciòn serial e inicializamos todos nuestros puertos como salidas y el de echo del ultrasonico como entrada
-Serial.begin(9600);
+lcd.backlight(); // Prendemos el lcd
+Serial.begin(9600); // COmunicación serial
+// Definición de pines como entradas o salidas 
 pinMode(motA1, OUTPUT);
 pinMode(motA2, OUTPUT);
 pinMode(motB1, OUTPUT);
@@ -32,48 +37,54 @@ pinMode(enable1, OUTPUT);
 pinMode(enable2, OUTPUT);
 pinMode(trig, OUTPUT);
 pinMode(echo, INPUT);
+lcd.init(); // Iniciamos el lcd
 }
 
 void loop() {
 // Hacemos uso de las funciones definidas que sensan el medio y imprimen los datos
 lightSensor();
 followLight();
-//voltageSensor();
-//distanceSensor();
-//temperatureSensor();
-//lcd_print();
+voltageSensor();
+distanceSensor();
+temperatureSensor();
+lcd_print(); // Imprimimos los valores de los LDRs
 }
 
 void followLight() {
+  
+  // Mientras el valor de la fotorresistencia trasera sea mayor que su umbral definido, gira a 180 grados
   while(B_LDR >= B_UMBRAL) {
     driveRobot(1,-1);
     lightSensor();
   } 
   driveRobot(0,0); //frenamos el moviemiento del robot para poder dar lugar al siguiente moviemiento. 
 
+  // Mientras el valor de las fotorresistencias delanteras esten en el umbral definido, anda hacia el frente 
   while(diferencia_luz > UMBRAL_INFERIOR && diferencia_luz < UMBRAL_SUPERIOR) {
     driveRobot(1,1); // Si la luz se encuentra al frente, entonces avanzamos hacia ella en dirección recta. 
-    lightSensor(); 
+    lightSensor(); // Volvemos a sensar 
   }
   driveRobot(0,0);
-
+  // Mientras el valor de la diferencia sea mayor que su umbral definido superior, gira a la izquierda.
  while(diferencia_luz > UMBRAL_SUPERIOR) {
     driveRobot(-1,1); // Giramos el robot hacia la izquierda hasta que se posicione e dirección a la luz. 
     lightSensor();
   }
     driveRobot(0,0);
 
+  // Mientras el valor de la diferencia sea menor que su umbral definido inferior, gira a la derecha 
   while(diferencia_luz < UMBRAL_INFERIOR) {
-    driveRobot(1,-1);
-    lightSensor(); 
+    driveRobot(1,-1); // giro a la derecha 
+    lightSensor(); // volvemos a sensar
   }
-  driveRobot(0,0);
+  driveRobot(0,0); // paramos el robot
 
 }
 
 // Mètodo que genera los movimientos por rueda
 void driveRobot(float LSignal,float RSignal) {
 
+  // Va hacia atrás
   if(LSignal < 0 && RSignal < 0 ) { 
     digitalWrite(motB2,HIGH);
     digitalWrite(motB1,LOW);
@@ -82,6 +93,8 @@ void driveRobot(float LSignal,float RSignal) {
     digitalWrite(motA1,LOW);
     digitalWrite(enable1, 85);
   }
+  
+  // Gira hacia izquierda sobre la rueda derecha
   if(LSignal < 0 && RSignal == 0 ) { 
     digitalWrite(motB2,LOW);
     digitalWrite(motB1,LOW);
@@ -90,6 +103,8 @@ void driveRobot(float LSignal,float RSignal) {
     digitalWrite(motA1,LOW);
     digitalWrite(enable1, 85);
   }
+  
+  // Gira sobre su eje
   if(LSignal < 0 && RSignal > 0 ) { 
     digitalWrite(motB2,LOW);
     digitalWrite(motB1,HIGH);
@@ -98,6 +113,8 @@ void driveRobot(float LSignal,float RSignal) {
     digitalWrite(motA1,LOW);
     digitalWrite(enable1, 45);
   }
+  
+  // No hay movimiento
   if(LSignal == 0 && RSignal == 0 ) { 
     digitalWrite(motB2,LOW);
     digitalWrite(motB1,LOW);
@@ -106,6 +123,8 @@ void driveRobot(float LSignal,float RSignal) {
     digitalWrite(motA1,LOW);
     digitalWrite(enable1, 0);
   }
+  
+  // Gira hacia la derecha y hacia atrás  sobre la vuelta izquierda
   if(LSignal == 0 && RSignal < 0) { 
     digitalWrite(motB2,HIGH);
     digitalWrite(motB1,LOW);
@@ -114,6 +133,8 @@ void driveRobot(float LSignal,float RSignal) {
     digitalWrite(motA1,LOW);
     digitalWrite(enable1, 0);
   }
+  
+  // Giro hacia delante y a la derecha sobre la rueda izquierda
   if(LSignal == 0 && RSignal > 0) { 
     digitalWrite(motB2,LOW);
     digitalWrite(motB1,HIGH);
@@ -122,6 +143,8 @@ void driveRobot(float LSignal,float RSignal) {
     digitalWrite(motA1,LOW);
     digitalWrite(enable1, 85);
   }
+  
+  // Va hacia delante 
   if(LSignal > 0 && RSignal > 0) { 
     digitalWrite(motB2,LOW);
     digitalWrite(motB1,HIGH);
@@ -130,6 +153,8 @@ void driveRobot(float LSignal,float RSignal) {
     digitalWrite(motA1,HIGH);
     digitalWrite(enable1, 85);
   }
+  
+  // Gira hacia la izquierda y hacia delante sobre la rueda derecha 
   if(LSignal > 0 && RSignal == 0) { 
     digitalWrite(motB2,LOW);
     digitalWrite(motB1,LOW);
@@ -138,6 +163,8 @@ void driveRobot(float LSignal,float RSignal) {
     digitalWrite(motA1,HIGH);
     digitalWrite(enable1, 85);
   }
+  
+  // Giro sobre el eje
   if(LSignal > 0 && RSignal < 0) { 
     digitalWrite(motB2,HIGH);
     digitalWrite(motB1,LOW);
